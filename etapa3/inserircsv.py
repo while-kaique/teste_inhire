@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS operadoras (
 cursor.execute(create_table_sql)
 
 # Ler o arquivo CSV com pandas
-df = pd.read_csv(r'C:\ProgramData\MySQL\MySQL Server 8.0\Uploads\Relatorio_cadop.csv', delimiter=';', quotechar='"')
+df = pd.read_csv(r'C:\ProgramData\MySQL\MySQL Server 8.0\Uploads\Relatorio_cadop.csv', delimiter=';', quotechar='"', encoding='utf-8')
 
 # Inserir os dados na tabela
 for _, row in df.iterrows():
