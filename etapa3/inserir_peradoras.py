@@ -1,6 +1,8 @@
 import pandas as pd
 import mysql.connector
 
+CSV_PATH = r'C:\ProgramData\MySQL\MySQL Server 8.0\Uploads\Relatorio_cadop.csv'
+
 # Conectar ao banco de dados
 db = mysql.connector.connect(
     host="localhost",
@@ -39,7 +41,7 @@ CREATE TABLE IF NOT EXISTS operadoras (
 cursor.execute(create_table_sql)
 
 # Ler o arquivo CSV com pandas
-df = pd.read_csv(r'C:\ProgramData\MySQL\MySQL Server 8.0\Uploads\Relatorio_cadop.csv', delimiter=';', quotechar='"', encoding='utf-8')
+df = pd.read_csv(CSV_PATH, delimiter=';', quotechar='"', encoding='utf-8')
 
 # Inserir os dados na tabela
 for _, row in df.iterrows():
