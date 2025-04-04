@@ -1,0 +1,90 @@
+{
+	"info": {
+		"_postman_id": "8bc3c0a8-0354-40f6-8a97-ee5cf8991b43",
+		"name": "API Operadoras de Saúde",
+		"description": "### Requisição GET\n\n- Teste Geral:\n    \n`   - 'q': Sem termo de busca (retorna todos os registros)`\n        \n\n- Teste específico que existe:\n`   - 'q': Termo de busca válido no nome ou descrição (retorna todos os registros que contenham valores parecidos/iguais no nome ou descrição)`\n      \n\n- Teste específico que não existe:\n`   - 'q': Termo inválido (retorna uma lista vazia, usei exemplo específico no script)` \n\n\n- Teste de otimização:\n`   - 'q': Otimização (Caso o tempo de resposta seja <= 500ms, aprovado)`\n\n\n- **Regras**:\n    \n    - Se `nome_fantasia` for NULL/vazio, retorna \"Desconhecido/Não informado\".",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43769355",
+		"_collection_link": "https://kaiquecode.postman.co/workspace/92517c11-655c-4e8c-8586-ca67f83dd789/collection/43769355-8bc3c0a8-0354-40f6-8a97-ee5cf8991b43?action=share&source=collection_link&creator=43769355"
+	},
+	"item": [
+		{
+			"name": "Teste Geral",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status 200 OK\", () => pm.response.to.have.status(200));\r",
+							"\r",
+							"// Verifica se a resposta é JSON\r",
+							"pm.test(\"Resposta é JSON\", () => pm.response.to.be.json);\r",
+							"\r",
+							"// Valida a estrutura do JSON\r",
+							"pm.test(\"Tem campos obrigatórios\", () => {\r",
+							"    const response = pm.response.json();\r",
+							"    pm.expect(response).to.have.property(\"data\").that.is.an(\"array\");\r",
+							"    pm.expect(response).to.have.property(\"pagination\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Paginação válida\", () => {\r",
+							"    const { pagination } = pm.response.json();\r",
+							"    pm.expect(pagination).to.include.keys([\"total\", \"per_page\", \"current_page\", \"total_pages\"]);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/operadoras",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"operadoras"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "saúde",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Teste específico que existe",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Teste que o valor não exsite",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Teste de otimização",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
