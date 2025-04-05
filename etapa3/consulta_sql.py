@@ -1,25 +1,17 @@
 import pandas as pd
 import mysql.connector
 import os
-from datetime import datetime
+from dotenv import load_dotenv
 
-CSV_FILES = {
-    r'C:\ProgramData\MySQL\MySQL Server 8.0\Uploads\2023\1T2023.csv': '1T2023',
-    r'C:\ProgramData\MySQL\MySQL Server 8.0\Uploads\2023\2T2023.csv': '2T2023',
-    r'C:\ProgramData\MySQL\MySQL Server 8.0\Uploads\2023\3T2023.csv': '3T2023',
-    r'C:\ProgramData\MySQL\MySQL Server 8.0\Uploads\2023\4T2023.csv': '4T2023',
-    r'C:\ProgramData\MySQL\MySQL Server 8.0\Uploads\2024\1T2024.csv': '1T2024',
-    r'C:\ProgramData\MySQL\MySQL Server 8.0\Uploads\2024\2T2024.csv': '2T2024',
-    r'C:\ProgramData\MySQL\MySQL Server 8.0\Uploads\2024\3T2024.csv': '3T2024',
-    r'C:\ProgramData\MySQL\MySQL Server 8.0\Uploads\2024\4T2024.csv': '4T2024',
-}
+# Carrega variáveis de ambiente do arquivo .env
+load_dotenv()
 
 def conectar_banco():
     return mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="kaiquemedeiros08",
-        database="estagio_intuitivecare"
+        host=os.getenv('DB_HOST', 'localhost'), 
+        user=os.getenv('DB_USER', 'root'),    
+        password=os.getenv('DB_PASSWORD'),      
+        database=os.getenv('DB_NAME', 'estagio_intuitivecare')
     )
 
 def consultar_top_operadoras_ultimo_ano():
@@ -123,6 +115,7 @@ def consultar_top_operadoras_eventos_sinistros():
 
 def main():
     consultar_top_operadoras_eventos_sinistros()
+    print('//////////////////')
     print('//////////////////')
     consultar_top_operadoras_ultimo_ano()
 

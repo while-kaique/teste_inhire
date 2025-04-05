@@ -1,6 +1,11 @@
 
 import pandas as pd
 import mysql.connector
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 CSV_FILES = {
     r'C:\ProgramData\MySQL\MySQL Server 8.0\Uploads\2023\1T2023.csv': '1T2023',
@@ -16,10 +21,10 @@ CSV_FILES = {
 # Conectar ao banco de dados
 def conectar_banco():
     return mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="kaiquemedeiros08",
-        database="estagio_intuitivecare"
+        host=os.getenv('DB_HOST', 'localhost'), 
+        user=os.getenv('DB_USER', 'root'),     
+        password=os.getenv('DB_PASSWORD'),      
+        database=os.getenv('DB_NAME', 'estagio_intuitivecare')
     )
 
 def criar_tabela_despesas():

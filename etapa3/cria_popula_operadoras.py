@@ -1,20 +1,22 @@
 import pandas as pd
 import mysql.connector
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 CSV_PATH = r'C:\ProgramData\MySQL\MySQL Server 8.0\Uploads\Relatorio_cadop.csv'
 
 # Conectar ao banco de dados
 def conectar_banco():
-    """Estabelece conexão com o banco de dados"""
     return mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="kaiquemedeiros08",
-        database="estagio_intuitivecare"
+        host=os.getenv('DB_HOST', 'localhost'),
+        user=os.getenv('DB_USER', 'root'),     
+        password=os.getenv('DB_PASSWORD'),     
+        database=os.getenv('DB_NAME', 'estagio_intuitivecare')
     )
 
 def criar_tabela_operadoras():
-    """Cria a tabela de operadoras se não existir"""
     db = conectar_banco()
     cursor = db.cursor()
     
@@ -46,7 +48,7 @@ def criar_tabela_operadoras():
     try:
         cursor.execute(create_table_sql)
         db.commit()
-        print("Tabela 'operadoras' verificada/criada com sucesso!")
+        print("Tabela 'operadoras' criada com sucesso!")
     except Exception as e:
         print(f"Erro ao criar tabela operadoras: {e}")
         db.rollback()
@@ -55,7 +57,6 @@ def criar_tabela_operadoras():
         db.close()
 
 def criar_indices():
-    """Cria índices necessários na tabela despesas"""
     db = conectar_banco()
     cursor = db.cursor()
     
@@ -87,7 +88,6 @@ def criar_indices():
 # Ler o arquivo CSV com pandas
 df = pd.read_csv(CSV_PATH, delimiter=';', quotechar='"', encoding='utf-8')
 def popular_tabela_operadoras():
-    """Popula a tabela de operadoras com dados do CSV"""
     db = conectar_banco()
     cursor = db.cursor()
     

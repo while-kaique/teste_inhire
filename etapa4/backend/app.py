@@ -1,16 +1,20 @@
 from flask import Flask, request, jsonify
 import mysql.connector
 from flask_cors import CORS
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
 
 def conectar_banco():
     return mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="kaiquemedeiros08",
-        database="estagio_intuitivecare"
+        host=os.getenv('DB_HOST', 'localhost'), 
+        user=os.getenv('DB_USER', 'root'),      
+        password=os.getenv('DB_PASSWORD'),      
+        database=os.getenv('DB_NAME', 'estagio_intuitivecare')
     )
 
 @app.route('/api/operadoras', methods=['GET'])
