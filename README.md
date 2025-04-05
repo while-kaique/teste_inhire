@@ -1,5 +1,21 @@
 # 📊 Projeto de Análise de Dados de Operadoras de Saúde
 Esse é o projeto final do Teste de Nivelamento da vaga de estágio da IntuitiveCare, cujo objetivo é criar/povoar tabelas MySQL por dados preparados/baixados, criar queries otimizadas para consulta de informações gerais (uso de íncides para otimização) e apresentação de dados via requisição de API em Python através de aplicação em Vue.
+
+# Apresentação do projeto:
+## Página Principal
+![image](https://github.com/user-attachments/assets/501ea575-f736-4dee-8fc2-557e4397060f)
+
+
+## Pesquisa Geral
+![image](https://github.com/user-attachments/assets/90a3a17b-d2c8-4dc8-a083-3daabacdc81d)
+![image](https://github.com/user-attachments/assets/15ebd026-84ba-4db1-b716-a0dd5a15b536)
+
+
+## Pesquisa sem resultados
+![image](https://github.com/user-attachments/assets/ed2b86a2-425f-43c8-add0-87c041733e14)
+
+
+
 ## 🏗️ Estrutura do Projeto
 
 ├── 📂 etapa1/            # Download e compactação de arquivos  
