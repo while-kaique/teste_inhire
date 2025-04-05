@@ -26,7 +26,7 @@ with zipfile.ZipFile(zip_path, "r") as zip_ref:
                 if tabela:
                     tabelas.extend(tabela)
 
-print("tabela criada, falta substituir")
+print("Tabela criada, falta substituir")
 # Criação do DataFrame
 df = pd.DataFrame(tabelas[1:], columns=tabelas[0])
 df.rename(columns=substituicoes, inplace=True)
@@ -40,7 +40,7 @@ for col in df.columns:
         df[col] = df[col].replace(substituicoes)
 
 # 4. Verificação FINAL
-print("\n✅ Valores únicos DEPOIS da substituição:")
+print("\nValores únicos DEPOIS da substituição:")
 for col in df.columns:
     if any(original in df[col].values for original in substituicoes.keys()):
         print(f"Coluna '{col}': {df[col].unique()}")

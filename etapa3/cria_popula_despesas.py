@@ -6,7 +6,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-
 CSV_FILES = {
     r'C:\ProgramData\MySQL\MySQL Server 8.0\Uploads\2023\1T2023.csv': '1T2023',
     r'C:\ProgramData\MySQL\MySQL Server 8.0\Uploads\2023\2T2023.csv': '2T2023',
