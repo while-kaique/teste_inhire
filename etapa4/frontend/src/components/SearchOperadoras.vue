@@ -121,9 +121,9 @@
     width: 100%;
   }
   input {
-    width: 60%;
-    padding-left: 10px;
-    height: 40px;
+    width: 65%;
+    padding-left: 20px;
+    height: 50px;
     font-size: 16px;
     border: none;
     border-top-left-radius: 4px;
@@ -136,8 +136,8 @@
   }
   
   button {
-    width: 20%;
-    height: 40px;
+    width: 15%;
+    height: 50px;
     background: #42b983;
     color: white;
     border: none;

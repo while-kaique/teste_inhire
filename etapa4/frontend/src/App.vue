@@ -35,7 +35,7 @@ export default {
 }
 
 header {
-  width: 80%;
+  width: 78%;
   text-align: left;
   font-size: 1.6rem;
   color: #A6BBCC;
@@ -47,6 +47,7 @@ header p{
   color: white;
   font-weight: 100;
   font-size: 1rem;
+  padding-left: 3px;
 }
 
 main {
